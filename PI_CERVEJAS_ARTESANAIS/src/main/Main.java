@@ -1,7 +1,7 @@
 package main;
 
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
 
 import classes.Apreciador;
 import dao.ConnectionFactory;
@@ -9,14 +9,13 @@ import dao.ConnectionFactory;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-		
 		Apreciador apreciador = new Apreciador(1, "Brama");
 	
-		try {			
-			EntityManager connection = ConnectionFactory.getEntityManager();		
+		try {
+			EntityManager connection = ConnectionFactory.getEntityManager();
 			connection.getTransaction().begin();
 			connection.persist(apreciador);
-			connection.getTransaction().commit();			
+			connection.getTransaction().commit();
 		} catch(Exception e) {
 			throw new Exception("Erro gravando Grupo: "+ e.getMessage());
 		}
